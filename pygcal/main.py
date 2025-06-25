@@ -2,6 +2,7 @@
 main entry point to the program
 """
 
+import json
 import pylogconf.core
 from pygooglehelper import register_functions, ConfigRequest, get_credentials
 from pytconf import register_main, config_arg_parse_and_launch, register_endpoint
@@ -37,6 +38,18 @@ def calendars_list() -> None:
     for calendar in calendars:
         summary = calendar.get("summary")
         print(f"{summary}")
+
+
+@register_endpoint(
+    description="Dump calendars in JSON format",
+)
+def calendars_dump() -> None:
+    api = get_api()
+    calendars_result = api.calendarList().list().execute()
+    calendars = calendars_result.get("items", [])
+    if not calendars:
+        return
+    print(json.dumps(calendars, indent=2))
 
 
 @register_main(
