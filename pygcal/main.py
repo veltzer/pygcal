@@ -11,6 +11,18 @@ from pygcal.static import DESCRIPTION, APP_NAME, VERSION_STR
 from pygcal.constants import SCOPES, API_SERVICE_NAME, API_VERSION
 
 
+def get_api():
+    ConfigRequest.scopes = SCOPES
+    ConfigRequest.app_name = APP_NAME
+    credentials = get_credentials()
+    return googleapiclient.discovery.build(
+        serviceName=API_SERVICE_NAME,
+        version=API_VERSION,
+        credentials=credentials,
+        cache_discovery=False,
+    )
+
+
 @register_endpoint(
     description="List calendars",
 )
@@ -47,15 +59,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-def get_api():
-    ConfigRequest.scopes = SCOPES
-    ConfigRequest.app_name = APP_NAME
-    credentials = get_credentials()
-    return googleapiclient.discovery.build(
-        serviceName=API_SERVICE_NAME,
-        version=API_VERSION,
-        credentials=credentials,
-        cache_discovery=False,
-    )

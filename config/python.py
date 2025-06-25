@@ -14,6 +14,7 @@ config_requires: List[str] = [
 ]
 install_requires: List[str] = [
     "pygooglehelper",
+    "google-api-python-client",
 ]
 build_requires: List[str] = [
     "pymakehelper",
