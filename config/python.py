@@ -1,6 +1,9 @@
 """ python depedencies for this project """
 from typing import List
 
+console_scripts: List[str] = [
+    "pygcal=pygcal.main:main",
+]
 
 dev_requires: List[str] = [
     "pypitools",
@@ -9,7 +12,9 @@ dev_requires: List[str] = [
 config_requires: List[str] = [
     "pyclassifiers",
 ]
-install_requires: List[str] = []
+install_requires: List[str] = [
+    "pygooglehelper",
+]
 build_requires: List[str] = [
     "pymakehelper",
     "pydmt",
