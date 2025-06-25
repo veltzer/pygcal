@@ -20,6 +20,5 @@ test_requires: List[str] = [
     "flake8",
     "pylint",
     "mypy",
-    "types-requests",
 ]
 requires = config_requires + install_requires + build_requires + test_requires
