@@ -5,7 +5,7 @@ main entry point to the program
 import pylogconf.core
 from pygooglehelper import register_functions, ConfigRequest, get_credentials
 from pytconf import register_main, config_arg_parse_and_launch, register_endpoint
-import googleapiclient
+from googleapiclient.discovery import build
 
 from pygcal.static import DESCRIPTION, APP_NAME, VERSION_STR
 from pygcal.constants import SCOPES, API_SERVICE_NAME, API_VERSION
@@ -15,7 +15,7 @@ def get_api():
     ConfigRequest.scopes = SCOPES
     ConfigRequest.app_name = APP_NAME
     credentials = get_credentials()
-    return googleapiclient.discovery.build(
+    return build(
         serviceName=API_SERVICE_NAME,
         version=API_VERSION,
         credentials=credentials,
@@ -28,20 +28,15 @@ def get_api():
 )
 def calendars_list() -> None:
     api = get_api()
-    print("Getting the list of calendars...")
-    # pylint: disable=no-member
     calendars_result = api.calendarList().list().execute()
     calendars = calendars_result.get("items", [])
 
     if not calendars:
-        print("No calendars found.")
         return
 
-    print("Your Calendars:")
     for calendar in calendars:
-        summary = calendar.get("summary", "No Title")
-        calendar_id = calendar["id"]
-        print(f"- {summary} (ID: {calendar_id})")
+        summary = calendar.get("summary")
+        print(f"{summary}")
 
 
 @register_main(

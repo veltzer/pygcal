@@ -1,5 +1,7 @@
 # THIS IS AN AUTO-GENERATED FILE. DO NOT EDIT!
 pyclassifiers
+pygooglehelper
+google-api-python-client
 pymakehelper
 pydmt
 pytest

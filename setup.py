@@ -32,6 +32,8 @@ setuptools.setup(
         "python3",
     ],
     install_requires=[
+        "pygooglehelper",
+        "google-api-python-client",
     ],
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -43,4 +45,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3.12",
         "Topic :: Utilities",
     ],
+    entry_points={"console_scripts": [
+        "pygcal=pygcal.main:main",
+    ]},
 )
