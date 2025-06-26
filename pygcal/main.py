@@ -50,6 +50,22 @@ def calendars_dump() -> None:
     print(json.dumps(calendars, indent=2))
 
 
+@register_endpoint(
+    description="Show primary calendar name and id",
+)
+def show_primary_calendar() -> None:
+    api = get_api()
+    calendar_list = api.calendarList().list().execute()  # pylint: disable=no-member
+    for calendar_entry in calendar_list.get('items', []):
+        is_primary = calendar_entry.get('primary', False)
+        if is_primary:
+            summary = calendar_entry.get('summary')
+            calendar_id = calendar_entry.get('id')
+            print(f"Name: [{summary}]")
+            print(f"ID: [{calendar_id}]")
+            break
+
+
 @register_main(
     main_description=DESCRIPTION,
     app_name=APP_NAME,
