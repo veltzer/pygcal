@@ -29,11 +29,15 @@ def get_api():
 )
 def calendars_list() -> None:
     api = get_api()
-    calendars_result = api.calendarList().list().execute()
-    calendars = calendars_result.get("items", [])
-    if not calendars:
-        return
-    for calendar in sorted(calendars, key=lambda cal: cal.get("summary")):
+    all_calendars = []
+    page_token = None
+    while True:
+        calendars_result = api.calendarList().list(pageToken=page_token).execute()
+        all_calendars.extend(calendars_result.get("items", []))
+        page_token = calendars_result.get("nextPageToken")
+        if not page_token:
+            break
+    for calendar in sorted(all_calendars, key=lambda cal: cal.get("summary")):
         summary = calendar.get("summary")
         print(f"{summary}")
 
@@ -43,11 +47,15 @@ def calendars_list() -> None:
 )
 def calendars_dump() -> None:
     api = get_api()
-    calendars_result = api.calendarList().list().execute()
-    calendars = calendars_result.get("items", [])
-    if not calendars:
-        return
-    print(json.dumps(calendars, indent=2))
+    all_calendars = []
+    page_token = None
+    while True:
+        calendars_result = api.calendarList().list(pageToken=page_token).execute()
+        all_calendars.extend(calendars_result.get("items", []))
+        page_token = calendars_result.get("nextPageToken")
+        if not page_token:
+            break
+    print(json.dumps(all_calendars, indent=2))
 
 
 @register_endpoint(
@@ -55,14 +63,18 @@ def calendars_dump() -> None:
 )
 def show_primary_calendar() -> None:
     api = get_api()
-    calendar_list = api.calendarList().list().execute()  # pylint: disable=no-member
-    for calendar_entry in calendar_list.get('items', []):
-        is_primary = calendar_entry.get('primary', False)
-        if is_primary:
-            summary = calendar_entry.get('summary')
-            calendar_id = calendar_entry.get('id')
-            print(f"Name: [{summary}]")
-            print(f"ID: [{calendar_id}]")
+    page_token = None
+    while True:
+        calendars_result = api.calendarList().list(pageToken=page_token).execute()
+        for calendar_entry in calendars_result.get("items", []):
+            is_primary = calendar_entry.get("primary", False)
+            if is_primary:
+                summary = calendar_entry.get("summary")
+                calendar_id = calendar_entry.get("id")
+                print(f"Name: [{summary}]")
+                print(f"ID: [{calendar_id}]")
+        page_token = calendars_result.get("nextPageToken")
+        if not page_token:
             break
 
 
