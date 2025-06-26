@@ -13,6 +13,9 @@ setuptools.setup(
     packages=[
         "pygcal",
     ],
+    package_data={
+		"pygcal": ["*.json"],
+    },
     # from here all is optional
     description="Do stuff with google calendar",
     long_description=get_readme(),
