@@ -12,6 +12,6 @@ project website: https://veltzer.github.io/pygcal
 
 author: Mark Veltzer
 
-version: 0.0.3
+version: 0.0.4
 
 	Mark Veltzer <mark.veltzer@gmail.com>, Copyright © 2025
