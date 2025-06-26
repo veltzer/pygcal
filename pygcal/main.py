@@ -31,11 +31,9 @@ def calendars_list() -> None:
     api = get_api()
     calendars_result = api.calendarList().list().execute()
     calendars = calendars_result.get("items", [])
-
     if not calendars:
         return
-
-    for calendar in calendars:
+    for calendar in sorted(calendars, key=lambda cal: cal.get("summary")):
         summary = calendar.get("summary")
         print(f"{summary}")
 
