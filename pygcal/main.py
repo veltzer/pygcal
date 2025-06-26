@@ -2,6 +2,7 @@
 main entry point to the program
 """
 
+import os
 import json
 import pylogconf.core
 from pygooglehelper import register_functions, ConfigRequest, get_credentials
@@ -85,8 +86,8 @@ def show_primary_calendar() -> None:
 )
 def main():
     pylogconf.core.setup()
-    ConfigRequest.app_name = APP_NAME
     ConfigRequest.scopes = SCOPES
+    ConfigRequest.location = os.path.dirname(os.path.realpath(__file__))
     register_functions()
     config_arg_parse_and_launch()
 
