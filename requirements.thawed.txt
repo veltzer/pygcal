@@ -1,11 +1,10 @@
 # THIS IS AN AUTO-GENERATED FILE. DO NOT EDIT!
-pyclassifiers
-pygooglehelper
 google-api-python-client
-pymakehelper
+mypy
+pyclassifiers
 pydmt
+pygooglehelper
+pylint
+pymakehelper
 pytest
 pytest-cov
-flake8
-pylint
-mypy
