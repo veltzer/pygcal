@@ -12,8 +12,10 @@ install_requires: list[str] = [
     "google-api-python-client",
 ]
 build_requires: list[str] = [
+    "hatch",
     "pydmt",
     "pymakehelper",
+    "pycmdtools",
 ]
 test_requires: list[str] = [
     "pytest",
