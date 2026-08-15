@@ -15,4 +15,6 @@ enabled = false
 pip = [
     "pygooglehelper",
     "google-api-python-client",
+    "pylogconf",
+    "pytconf",
 ]
