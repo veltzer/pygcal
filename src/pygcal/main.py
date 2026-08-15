@@ -2,15 +2,16 @@
 main entry point to the program
 """
 
-import os
 import json
-import pylogconf.core
-from pygooglehelper import register_functions, ConfigRequest, get_credentials
-from pytconf import register_main, config_arg_parse_and_launch, register_endpoint
-from googleapiclient.discovery import build
+import os
 
-from pygcal.static import DESCRIPTION, APP_NAME, VERSION_STR
-from pygcal.constants import SCOPES, API_SERVICE_NAME, API_VERSION
+import pylogconf.core
+from googleapiclient.discovery import build
+from pygooglehelper import ConfigRequest, get_credentials, register_functions
+from pytconf import config_arg_parse_and_launch, register_endpoint, register_main
+
+from pygcal.constants import API_SERVICE_NAME, API_VERSION, SCOPES
+from pygcal.static import APP_NAME, DESCRIPTION, VERSION_STR
 
 
 def get_api():
