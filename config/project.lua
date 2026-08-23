@@ -4,3 +4,4 @@ KEYWORDS = {
     "google",
     "calendar",
 }
+PYPI = true
