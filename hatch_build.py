@@ -36,8 +36,8 @@ class CustomBuildHook(BuildHookInterface):
             if source and os.path.isfile(source):
                 os.makedirs(os.path.dirname(target), exist_ok=True)
                 shutil.copyfile(source, target)
-                # Not part of the source tree; do not leave it behind.
                 build_data["artifacts"].append(f"/{CLIENT_SECRET}")
+                self._copied = target
                 return
 
         raise RuntimeError(
@@ -46,3 +46,12 @@ class CustomBuildHook(BuildHookInterface):
             f"{CONFIG_LOCATION},\n"
             "or set PYGCAL_CLIENT_SECRET to its path, before building."
         )
+
+    def finalize(self, version, build_data, artifact_path):
+        # The copy is not part of the source tree. Leaving it behind would make
+        # the next build take the "already in place" branch above and silently
+        # ship this stale copy instead of re-reading the real credential.
+        copied = getattr(self, "_copied", None)
+        if copied and os.path.isfile(copied):
+            os.remove(copied)
+            self._copied = None
