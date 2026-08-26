@@ -51,10 +51,18 @@ line-length = 130
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 
+[tool.hatch.build.hooks.custom]
+path = "hatch_build.py"
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/pygcal"]
+# client_secret.json is gitignored (GitHub push protection blocks OAuth
+# secrets), but it must ship in the distribution so `pip install pygcal`
+# works with no setup. "artifacts" overrides the VCS-ignore exclusion.
+artifacts = ["src/pygcal/client_secret.json"]
 
 [tool.hatch.build.targets.sdist]
+artifacts = ["src/pygcal/client_secret.json"]
 include = [
     "src/pygcal/",
     "README.md",

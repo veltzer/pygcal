@@ -16,7 +16,7 @@ from pygcal.static import APP_NAME, DESCRIPTION, VERSION_STR
 
 def get_api():
     ConfigRequest.scopes = SCOPES
-    ConfigRequest.app_name = APP_NAME
+    ConfigRequest.location = os.path.dirname(os.path.realpath(__file__))
     credentials = get_credentials()
     return build(
         serviceName=API_SERVICE_NAME,

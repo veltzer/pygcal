@@ -239,6 +239,8 @@ claude/
 
 # secrets
 creds.txt
+# shipped via pyproject "artifacts", never committed
+client_secret.json
 
 # rsconstruct
 /.rsconstruct/
