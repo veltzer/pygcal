@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pygcal"
-version = "0.0.7"
+version = "0.0.8"
 requires-python = ">=3.12"
 authors = [
 	{ name = "Mark Veltzer", email = "mark.veltzer@gmail.com" }
