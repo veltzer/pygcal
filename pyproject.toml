@@ -105,8 +105,9 @@ prerelease = "disallow"
 dev = [
     "mypy",
     "pylint",
-    "pytest",
-    "ruff",
     "pylogconf",
     "pytconf",
+    "pytest",
+    "ruff",
+    "sphinx",
 ]
