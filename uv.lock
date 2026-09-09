@@ -800,6 +800,8 @@ source = { editable = "." }
 dependencies = [
     { name = "google-api-python-client" },
     { name = "pygooglehelper" },
+    { name = "pylogconf" },
+    { name = "pytconf" },
 ]
 
 [package.dev-dependencies]
@@ -817,6 +819,8 @@ dev = [
 requires-dist = [
     { name = "google-api-python-client" },
     { name = "pygooglehelper" },
+    { name = "pylogconf" },
+    { name = "pytconf" },
 ]
 
 [package.metadata.requires-dev]

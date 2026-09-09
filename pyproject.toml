@@ -33,6 +33,8 @@ classifiers = [
 dependencies = [
     "pygooglehelper",
     "google-api-python-client",
+    "pylogconf",
+    "pytconf",
 ]
 
 [project.urls]
