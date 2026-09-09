@@ -3,7 +3,7 @@
      values that template reads, and build again. -->
 # *pygcal* project by Mark Veltzer
 
-description: Do stuff with google calendar
+description: Do various things with google calendar
 
 project website: https://veltzer.github.io/pygcal
 
