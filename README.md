@@ -5,7 +5,7 @@
 
 description: Do various things with google calendar
 
-project website: https://veltzer.github.io/pygcal
+project website: <https://veltzer.github.io/pygcal>
 
 author: Mark Veltzer
 
