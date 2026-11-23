@@ -4,6 +4,7 @@ main entry point to the program
 
 import json
 import os
+from typing import Any
 
 import pylogconf.core
 from googleapiclient.discovery import build
@@ -14,7 +15,8 @@ from pygcal.constants import API_SERVICE_NAME, API_VERSION, SCOPES
 from pygcal.static import APP_NAME, DESCRIPTION, VERSION_STR
 
 
-def get_api():
+def get_api() -> Any:
+    # the discovery API builds its resource methods (calendarList, events...) at runtime
     ConfigRequest.scopes = SCOPES
     ConfigRequest.location = os.path.dirname(os.path.realpath(__file__))
     credentials = get_credentials()
