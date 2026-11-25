@@ -9,7 +9,7 @@ project website: <https://veltzer.github.io/pygcal>
 
 author: Mark Veltzer
 
-version: 0.0.9
+version: 0.0.10
 
 ## github
 

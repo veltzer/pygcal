@@ -10,7 +10,7 @@ So the build copies it in from outside the tree, trying in order:
 
   1. src/pygcal/client_secret.json  -- already in place, left alone
   2. $PYGCAL_CLIENT_SECRET  -- for release automation (CI secret -> file)
-  3. `pass show gcp/pygcal-id/oauth-client`  -- the developer's password
+  3. `pass show gcp/veltzer-pygcal-id/oauth-client`  -- the developer's password
      store, where every GCP credential lives (written out to the file in 1)
 
 If none is found the build fails loudly. Without that, hatchling would
@@ -26,7 +26,7 @@ from typing import override
 from hatchling.builders.hooks.plugin.interface import BuildHookInterface
 
 CLIENT_SECRET = os.path.join("src", "pygcal", "client_secret.json")
-PASS_ENTRY = "gcp/pygcal-id/oauth-client"
+PASS_ENTRY = "gcp/veltzer-pygcal-id/oauth-client"
 
 
 def _pass_show(entry: str) -> str | None:

@@ -1,5 +1,5 @@
 """ version which can be consumed from within the module """
-VERSION_STR = "0.0.9"
+VERSION_STR = "0.0.10"
 DESCRIPTION = "Do various things with google calendar"
 APP_NAME = "pygcal"
 LOGGER_NAME = "pygcal"
