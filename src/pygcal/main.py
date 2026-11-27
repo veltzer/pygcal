@@ -34,7 +34,7 @@ def get_api() -> Any:
 )
 def calendars_list() -> None:
     api = get_api()
-    all_calendars = []
+    all_calendars: list[dict[str, Any]] = []
     page_token = None
     while True:
         calendars_result = api.calendarList().list(pageToken=page_token).execute()
@@ -42,7 +42,7 @@ def calendars_list() -> None:
         page_token = calendars_result.get("nextPageToken")
         if not page_token:
             break
-    for calendar in sorted(all_calendars, key=lambda cal: cal.get("summary")):
+    for calendar in sorted(all_calendars, key=lambda cal: cal.get("summary", "")):
         summary = calendar.get("summary")
         print(f"{summary}")
 
@@ -52,7 +52,7 @@ def calendars_list() -> None:
 )
 def calendars_dump() -> None:
     api = get_api()
-    all_calendars = []
+    all_calendars: list[dict[str, Any]] = []
     page_token = None
     while True:
         calendars_result = api.calendarList().list(pageToken=page_token).execute()
